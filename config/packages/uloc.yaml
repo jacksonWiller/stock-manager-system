@@ -1,0 +1,2 @@
+uloc_api:
+    pass_phrase: "%env(PASS_JWT)%"

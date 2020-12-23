@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Uloc\ApiBundle\Entity\Person\Person">
+        <property name="document">
+            <constraint name="App\Validator\Constraints\CpfCnpj">
+                <option name="message">Documento {{ value }} inválido</option>
+            </constraint>
+        </property>
+
+        <property name="birthDate">
+            <constraint name="NotBlank">
+                <option name="message">Informe a data de nascimento</option>
+                <option name="groups">
+                    <value>PessoaFisica</value>
+                </option>
+            </constraint>
+        </property>
+
+        <property name="gender">
+            <constraint name="NotBlank">
+                <option name="message">Informe gênero da pessoa</option>
+                <option name="groups">
+                    <value>PessoaFisica</value>
+                </option>
+            </constraint>
+        </property>
+
+        <property name="emails">
+            <constraint name="Valid"/>
+            <constraint name="Count">
+                <option name="min">1</option>
+                <option name="minMessage">Necessário especificar ao menos um e-mail para a pessoa</option>
+                <option name="max">5</option>
+                <option name="maxMessage">You cannot specify more than {{ limit }} emails</option>
+            </constraint>
+        </property>
+
+        <property name="addresses">
+            <constraint name="Valid"/>
+            <constraint name="Count">
+                <option name="min">1</option>
+                <option name="minMessage">Necessário especificar ao menos um endereço para a pessoa</option>
+                <option name="max">10</option>
+                <option name="maxMessage">You cannot specify more than {{ limit }} addresses</option>
+            </constraint>
+        </property>
+
+        <property name="contacts">
+            <constraint name="Valid"/>
+        </property>
+
+        <property name="documents">
+            <constraint name="Valid"/>
+        </property>
+
+        <property name="phoneNumbers">
+            <constraint name="Valid"/>
+            <constraint name="Count">
+                <option name="min">1</option>
+                <option name="minMessage">Necessário especificar ao menos um telefone para a pessoa</option>
+                <option name="max">15</option>
+                <option name="maxMessage">You cannot specify more than {{ limit }} phones</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Uloc\ApiBundle\Entity\App\GlobalConfig">
+
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="message">Informe o nome da variável</option>
+            </constraint>
+        </property>
+
+        <property name="value">
+            <constraint name="NotBlank">
+                <option name="message">Informe o valor da variável</option>
+            </constraint>
+        </property>
+
+        <property name="description">
+            <constraint name="NotBlank">
+                <option name="message">Informe a descrição da variável</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

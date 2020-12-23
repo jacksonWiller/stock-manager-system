@@ -1,0 +1,6 @@
+sl:
+  global:
+    nome:
+      not_blank: 'Nome não pode ser em branco.'
+    descricao:
+      not_blank: 'Descrição não pode ser em branco.'
