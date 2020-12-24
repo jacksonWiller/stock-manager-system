@@ -20,10 +20,10 @@ use Doctrine\ORM\EntityManagerInterface;
 class ProductController extends BaseController
 {
     /**
-     * @Route(name="product_show", methods={"POST"}, path="/product")
+     * @Route(name="product_show", methods={"POST"}, path="/test/product")
      */
     public function newProduct(Request $request, EntityManagerInterface $entityManager)
-{
+    {
      $plataforma = new Product();
      $plataforma->setName($request->get('nome'));
      
@@ -36,7 +36,27 @@ class ProductController extends BaseController
       'success' => "Plataforma added successfully",
      ];
      return $this->createApiResponse($plataforma, 200);
-}
+    }
+
+    /**
+     * @Route(name="product_create", methods={"POST"}, path="/product")
+     */
+    public function newPlataforma(Request $request, PersonManager $manager)
+    {
+        try {
+            $this->isGrantedAcl('uloc/product/create');
+            $product = new Product();
+            $this->processProductForm($product, $request);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($product);
+            $em->flush();
+
+            return $this->createApiResponse($product, 201);
+        } catch (\Exception $e) {
+            return $this->errorHandler->handlerError($e->getMessage());
+        }
+    }
 
     /**
      * @param Prduct $product
