@@ -20,6 +20,10 @@ class ProductType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Product::class,
+            'csrf_protection' => false,
+            'allow_extra_fields' => true,
+            'invalid_message' => 'Product inválido',
         ]);
+
     }
 }
