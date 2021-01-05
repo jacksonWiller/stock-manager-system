@@ -16,3 +16,25 @@
 # else
 # ./bin/phpunit
 # fi
+
+
+ /**
+     * @Route(name="product_list", methods={"GET"}, path="/api/product")
+     */
+    public function listarProducts(Request $request, PersonManager $manager)
+    {
+        try {
+            $this->isGrantedAcl('uloc/user/list');
+
+            list($page, $limit, $offset) = $this->getPagination($request, 100, self::MAX_RESULT_LIMIT);
+
+            $products = $manager->list($limit, $offset, ['role' => 'ROLE_ERP']);
+            $products['result'] = $this->serialize($products['result'], 'array', 'public', function (ApiRepresentationMetadata $metadata) {
+                Product::loadApiRepresentation($metadata);
+            });
+            return $this->createApiResponseEncodeArray($products, 200);
+        } catch (\Exception $e) {
+            return $this->errorHandler->handlerError($e->getMessage());
+        }
+    }
+

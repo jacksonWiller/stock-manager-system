@@ -57,8 +57,7 @@ class Product extends FormEntity
         ];
 
         $representation
-            ->setGroup('public')
-            ->addProperties($public)
+            ->setGroup('public')->addProperties($public)
             ->build();
     }
 }
