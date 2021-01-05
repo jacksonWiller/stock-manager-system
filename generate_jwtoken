@@ -7,3 +7,6 @@ openssl genrsa -out var/jwt/private.pem -aes256 4096
 openssl rsa -pubout -in var/jwt/private.pem -out var/jwt/public.pem
 
 echo "Edit config/packages/uloc.yaml and edit pass_phrase"
+
+php bin/console uloc:user:create usuario senha --roles ROLE_USER,ROLE_INTRANET
+php bin/console uloc:token:get usuario

@@ -132,6 +132,9 @@
     "league/flysystem-cached-adapter": {
         "version": "1.0.9"
     },
+    "league/mime-type-detection": {
+        "version": "1.5.1"
+    },
     "maennchen/zipstream-php": {
         "version": "2.1.0"
     },
@@ -169,7 +172,7 @@
         ]
     },
     "php": {
-        "version": "7.3"
+        "version": "7.4"
     },
     "phpoffice/phpspreadsheet": {
         "version": "1.14.1"
@@ -342,6 +345,9 @@
             "src/Controller/.gitignore",
             "src/Kernel.php"
         ]
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.3.1"
     },
     "symfony/http-foundation": {
         "version": "v5.1.2"
